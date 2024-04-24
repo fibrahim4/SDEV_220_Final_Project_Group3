@@ -1,0 +1,57 @@
+class Flower:
+    def __init__(self, name, quantity, price):
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+
+    def update_quantity(self, quantity):
+        self.quantity += quantity
+
+class InventoryManagementSystem:
+    def __init__(self):
+        self.inventory = []
+
+    def add_flower(self, name, quantity, price):
+        self.inventory.append(Flower(name, quantity, price))
+
+    def remove_flower(self, name):
+        for flower in self.inventory:
+            if flower.name == name:
+                self.inventory.remove(flower)
+                break
+
+    def update_flower_quantity(self, name, quantity):
+        for flower in self.inventory:
+            if flower.name == name:
+                flower.update_quantity(quantity)
+                break
+
+    def display_inventory(self):
+        print("Inventory:")
+        for flower in self.inventory:
+            print(f"Name: {flower.name}, Quantity: {flower.quantity}, Price: ${flower.price}")
+
+# Sample usage
+if __name__ == "__main__":
+    inventory_system = InventoryManagementSystem()
+    
+    # Adding flowers to the inventory
+    inventory_system.add_flower("Rose", 20, 2.5)
+    inventory_system.add_flower("Lily", 15, 3.0)
+    inventory_system.add_flower("Tulip", 25, 2.0)
+    
+    # Displaying initial inventory
+    inventory_system.display_inventory()
+    
+    # Updating quantity of flowers
+    inventory_system.update_flower_quantity("Rose", -5)  # Sold 5 roses
+    inventory_system.update_flower_quantity("Lily", 10)  # Restocked 10 lilies
+    
+    # Displaying updated inventory
+    inventory_system.display_inventory()
+    
+    # Removing a flower
+    inventory_system.remove_flower("Tulip")
+    
+    # Displaying final inventory
+    inventory_system.display_inventory()
