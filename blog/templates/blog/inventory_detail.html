@@ -1,11 +1,15 @@
 {% extends 'blog/index.html' %}
 {% block content %}
-        {% for Inventory in Inventorys %}
+<article class="post">
+    <aside class="actions">
+        <a class="btn btn-secondary" href="{% url 'inventory_edit' pk=inventory.pk %}">
+            {% include './icons/pencil-fill.svg' %}
+        </a>
+    </aside>
         <article class="post">
-          <h2><a href="{% url 'inventory_detail' pk=Inventory.pk %}">{{ Inventory.name }}</a></h2>
+          <h2><a href="">{{ inventory.name }}</a></h2>
           <p>Quantity: {{ Inventory.quantity}}</p>
           <p>Price: ${{ Inventory.price}}</p>
           <p>Status: {{ Inventory.status|linebreaksbr }}</p>
       </article>
-        {% endfor %}
 {% endblock %}
