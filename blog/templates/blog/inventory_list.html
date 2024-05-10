@@ -1,11 +1,46 @@
 {% extends 'blog/index.html' %}
+
+  
 {% block content %}
+
+<div class="container mt-4">
+  <h2>Flower Inevntory Lists</h2>
+  <article class="post">
+  <aside class="actions">  
+    <a class="btn btn-secondary" href="{% url 'inventory_new' %}">Create New Inventory
+    </a>
+    
+</aside>
+</article>
+    
+    
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">                                
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+       
         {% for Inventory in Inventorys %}
-        <article class="post">
-          <h2><a href="{% url 'inventory_detail' pk=Inventory.pk %}">{{ Inventory.name }}</a></h2>
-          <p>Quantity: {{ Inventory.quantity}}</p>
-          <p>Price: ${{ Inventory.price}}</p>
-          <p>Status: {{ Inventory.status|linebreaksbr }}</p>
-      </article>
+        
+            <article class="post">
+              
+                    <tbody>
+                        <tr>
+                            <td>{{ Inventory.name }}</td>
+                            <td>{{ Inventory.quantity}}</td>
+                            <td>{{ Inventory.price}}</td>
+                            <td>{{ Inventory.status}}</td>
+                        </tr>
+                    
+                    </tbody>
+                
+            </article>
         {% endfor %}
+    </thead>
+</table>
+
+</div>
 {% endblock %}

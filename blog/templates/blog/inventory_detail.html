@@ -5,8 +5,10 @@
             <a class="btn btn-secondary" href="{% url 'inventory_edit' pk=inventory.pk %}">
                 {% include './icons/pencil-fill.svg' %}
             </a>
+            <a class="btn btn-secondary" href="{% url 'inventory_remove' pk=inventory.pk %}">Delete</a>
+            
         </aside>
-        
+            
           <h2><a href="">{{ inventory.name }}</a></h2>
           <p>Quantity: {{ inventory.quantity}}</p>
           <p>Price: ${{ inventory.price}}</p>

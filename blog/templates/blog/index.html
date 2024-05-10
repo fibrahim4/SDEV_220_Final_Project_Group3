@@ -8,24 +8,44 @@
       <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Courgette&display=swap" rel="stylesheet">
 
     </head>
-    <body clas="bs-body-bg">
+    <body>
         <header class="page-header">
-            <div class="container">
-                <a href="{% url 'inventory_new' %}" class="top-menu">
+            <div class="container ">
+                {% if user.is_authenticated %}
+                <a href="{% url 'signout' %}" class="top-menu">
+                    Sign out
+                </a>
+                <a href="{% url 'inventory_list' %}" class="top-menu">
                     Inventory
                 </a>
-                <a href="{% url 'inventory_order' %}" class="top-menu">
-                    Order
+                
+                <a href="{% url 'inventory_shop' %}" class="top-menu">
+                    Home
                 </a>
+                {% else %}
+                <a href="{% url 'signup' %}" class="top-menu">
+                    Sign up
+                </a>
+                <a href="{% url 'signin' %}" class="top-menu">
+                    Sign in
+                </a>
+                <a href="{% url 'inventory_shop' %}" class="top-menu">
+                    Home
+                </a>
+                
+                
+                {% endif %}
                 <h1><a href="/">The Neighbourhood Flower Shop</a></h1>
             </div>  
         </header>
         <main class="container">
             <div class="row">
                 <div class="col">
+                    
                 
-                {% block content %}
-                {% endblock %}
+                                {% block content %}
+                                {% endblock %}
+
                 
             </div>
         </div>

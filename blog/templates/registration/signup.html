@@ -1,0 +1,37 @@
+{% extends "blog/index.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p>Please try again.</p>
+    {% endif %}
+
+    <form action="signup" method="POST"> 
+    {% csrf_token %}
+        <label for ="">Username</label>
+        <input type="text" id="username" name="username" placeholder="Create a username" required>
+        <br>
+        <label for ="">First Name</label>
+        <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" required>
+        <br>
+
+        <label for ="">Last Name</label>
+        <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" required>
+        <br>
+
+        <label for ="">Email Address</label>
+        <input type="text" id="email" name="email" placeholder="Enter Your Email Address" required>
+        <br>
+
+        <label for ="">Password</label>
+        <input type="text" id="pass1" name="pass1" placeholder="Create a Password" required>
+        <br>
+
+        <label for ="">Confirm your Password</label>
+        <input type="text" id="pass2" name="pass2" placeholder="Confirm Your Password" required>
+        <br>
+
+        <button type="submit">Sign Up</button>
+        
+    </form>
+
+{% endblock %}

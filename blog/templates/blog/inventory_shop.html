@@ -1,0 +1,16 @@
+
+{% extends 'blog/index.html' %}
+
+{% block content %}
+<h1 class="post">Product In Stock</h1>
+        {% for Inventory in Inventorys %}
+        <article class="post">
+            
+          
+          <h2><a href="{% url 'inventory_detail' pk=Inventory.pk %}">{{ Inventory.name }}</a></h2>
+          <p>Quantity: {{ Inventory.quantity}}</p>
+
+      </article>
+        {% endfor %}
+{% endblock %}
+
