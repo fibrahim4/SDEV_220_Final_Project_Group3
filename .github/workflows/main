@@ -7,6 +7,7 @@ class Flower:
     def update_quantity(self, quantity):
         self.quantity += quantity
 
+
 class InventoryManagementSystem:
     def __init__(self):
         self.inventory = []
@@ -31,27 +32,82 @@ class InventoryManagementSystem:
         for flower in self.inventory:
             print(f"Name: {flower.name}, Quantity: {flower.quantity}, Price: ${flower.price}")
 
-# Sample usage
+    def search_flower(self, name):
+        for flower in self.inventory:
+            if flower.name.lower() == name.lower():
+                return flower
+        return None
+
+
+class UserManagementSystem:
+    def __init__(self):
+        self.users = {}
+
+    def add_user(self, username, password):
+        self.users[username] = password
+
+    def login(self, username, password):
+        return username in self.users and self.users[username] == password
+
+    def signup(self, username, password):
+        if username not in self.users:
+            self.users[username] = password
+            return True
+        else:
+            return False
+
+
 if __name__ == "__main__":
     inventory_system = InventoryManagementSystem()
-    
+    user_system = UserManagementSystem()
+
     # Adding flowers to the inventory
     inventory_system.add_flower("Rose", 20, 2.5)
     inventory_system.add_flower("Lily", 15, 3.0)
     inventory_system.add_flower("Tulip", 25, 2.0)
-    
+
     # Displaying initial inventory
     inventory_system.display_inventory()
-    
+
+    # Search for a flower
+    search_term = input("Search for a flower: ")
+    found_flower = inventory_system.search_flower(search_term)
+    if found_flower:
+        print(f"Found: Name: {found_flower.name}, Quantity: {found_flower.quantity}, Price: ${found_flower.price}")
+    else:
+        print("Flower not found.")
+
+    # User Login/Signup
+    while True:
+        choice = input("Login (L) or Signup (S): ").lower()
+        if choice == "l":
+            username = input("Username: ")
+            password = input("Password: ")
+            if user_system.login(username, password):
+                print("Login successful.")
+                break
+            else:
+                print("Invalid username or password. Please try again.")
+        elif choice == "s":
+            username = input("Choose a username: ")
+            password = input("Choose a password: ")
+            if user_system.signup(username, password):
+                print("Signup successful. Please login.")
+            else:
+                print("Username already exists. Please choose a different username.")
+        else:
+            print("Invalid choice. Please choose 'L' for login or 'S' for signup.")
+
     # Updating quantity of flowers
     inventory_system.update_flower_quantity("Rose", -5)  # Sold 5 roses
     inventory_system.update_flower_quantity("Lily", 10)  # Restocked 10 lilies
-    
+
     # Displaying updated inventory
     inventory_system.display_inventory()
-    
+
     # Removing a flower
     inventory_system.remove_flower("Tulip")
-    
+
     # Displaying final inventory
     inventory_system.display_inventory()
+
